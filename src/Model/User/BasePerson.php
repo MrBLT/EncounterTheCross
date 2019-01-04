@@ -9,35 +9,33 @@
 
 namespace App\Model\User;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class BasePerson
+ *
+ * This class contains basic information about a person
+ *
+ * @package App\Model\User
+ */
 abstract class BasePerson
 {
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
-
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="uuid")
-     */
-    private $id;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    protected $lastName;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getEmail(): ?string
     {

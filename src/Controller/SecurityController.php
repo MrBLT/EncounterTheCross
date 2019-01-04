@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\AdminUser;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +49,7 @@ class SecurityController extends AbstractController
     {
         // TODO - use Symfony forms & validation
         if ($request->isMethod('POST')) {
-            $user = new User();
+            $user = new AdminUser();
             $user->setEmail($request->request->get('email'));
             $user->setFirstName('Mystery');
             $user->setPassword($passwordEncoder->encodePassword(

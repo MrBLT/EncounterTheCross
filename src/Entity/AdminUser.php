@@ -7,10 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * The User class is a BasePerson that has a login and implements UserInterface
+ *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User extends BasePerson implements UserInterface
+class AdminUser extends BasePerson implements UserInterface
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     * @ORM\Id()
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    protected $id;
 
     /**
      * @ORM\Column(type="json")
@@ -23,6 +33,10 @@ class User extends BasePerson implements UserInterface
      */
     private $password;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     /**
      * A visual identifier that represents this user.

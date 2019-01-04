@@ -2,32 +2,18 @@
 /**
  *
  * @Author: bthrower
- * @CreateAt: 1/2/2019 3:08 PM
+ * @CreateAt: 1/4/2019 1:46 PM
  * Project: EncounterTheCross
- * File Name: Person.php
+ * File Name: Location.php
  */
 
-namespace App\Model\User;
+namespace App\Model;
 
-use App\Model\States;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Exception\InvalidArgumentException;
 
-/**
- * Class Person
- *
- * This class contains extended details about a person.
- *
- * @package App\Model\User
- */
-abstract class Person extends BasePerson
+abstract class Location
 {
-
-    /**
-     * @ORM\Column(type="string", length=31)
-     */
-    protected $phone;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -45,7 +31,7 @@ abstract class Person extends BasePerson
     protected $city;
 
     /**
-     * @ORM\Column(type="string", length=31)
+     * @ORM\Column(type="string", length=2)
      */
     protected $state;
 
@@ -53,19 +39,6 @@ abstract class Person extends BasePerson
      * @ORM\Column(type="string", length=10)
      */
     protected $zipcode;
-    /**
-     * @var States
-     */
-    private $states;
-
-    /**
-     * Address constructor.
-     */
-    public function __construct()
-    {
-        $this->states = new States();
-    }
-
 
     public function getAddress(): ?string
     {
@@ -110,11 +83,8 @@ abstract class Person extends BasePerson
 
     public function setState(string $state): self
     {
-        if($this->states->checkState($state)){
             $this->state = $state;
-        } else {
-            throw new InvalidArgumentException;
-        }
+
         return $this;
     }
 
@@ -129,17 +99,4 @@ abstract class Person extends BasePerson
 
         return $this;
     }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
 }
