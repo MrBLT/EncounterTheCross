@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\EventServer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -12,7 +11,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method EventServer[]    findAll()
  * @method EventServer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EventServerRepository extends ServiceEntityRepository
+class EventServerRepository extends BaseRepository
 {
     public function __construct(RegistryInterface $registry)
     {

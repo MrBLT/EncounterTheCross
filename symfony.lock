@@ -107,6 +107,9 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "flosch/stripe-bundle": {
+        "version": "2.1.0"
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
@@ -181,6 +184,9 @@
             "version": "1.2",
             "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
         }
+    },
+    "stripe/stripe-php": {
+        "version": "v3.23.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"

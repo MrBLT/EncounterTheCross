@@ -32,13 +32,13 @@ class EventAttendeeFixtures extends BaseFixture implements OrderedFixtureInterfa
             for ($i = 0; $i < 20; $i++) {
                 $attendee = new EventAttendee();
                 $attendee
-                    ->setAddress($this->faker->address)
+                    ->setAddress($this->getFakeAddressLine())
                     ->setCity($this->faker->city)
                     ->setState('KS')
                     ->setZipcode($this->faker->postcode)
                     ->setPhone($this->faker->phoneNumber)
-                    ->setFirstName($this->faker->firstName)
-                    ->setLastName($this->faker->lastName)
+                    ->setFirstName($this->faker->firstName('male'))
+                    ->setLastName($this->faker->lastName('male'))
                     ->setEmail($this->faker->email)
                 ;
                 $attendee->setInvitedby($this->faker->name);

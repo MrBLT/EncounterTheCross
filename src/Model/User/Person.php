@@ -11,6 +11,7 @@ namespace App\Model\User;
 
 use App\Model\States;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\InvalidArgumentException;
 
 /**
@@ -25,6 +26,12 @@ abstract class Person extends BasePerson
 
     /**
      * @ORM\Column(type="string", length=31)
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/[\(\)0-9 - ext.]+/",
+     *     match=true,
+     *     message="[\(\)0-9 -ext.]+"
+     * )
      */
     protected $phone;
 
@@ -53,6 +60,7 @@ abstract class Person extends BasePerson
      * @ORM\Column(type="string", length=10)
      */
     protected $zipcode;
+
     /**
      * @var States
      */

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a href="{{ 'src/Controller/PaymentController.php'|file_link(0) }}">src/Controller/PaymentController.php</a></code>
+            </li>
+            <li>Your template at <code><a href="{{ 'templates/payment/index.html.twig'|file_link(0) }}">templates/payment/index.html.twig</a></code>
+            </li>
+        </ul>
+        <form action="{{ url('payment_submit',{'attendeeId': attendee.id}) }}" method="POST">
+            <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-email="{{ attendee.email }}"
+                    data-key="pk_test_x5GiiHsZjvs6HWxWM3zf1ANW"
+                    data-amount="12893"
+                    data-name="Encounter The Cross"
+                    data-description="Mens Encounter"
+                    data-zip-code="true"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto"
+            >
+            </script>
+        </form>
+        <form action="{{ url('payment_later',{'attendeeId': attendee.id}) }}" method="POST">
+            <button type="submit">Pay With Cash/Check</button>
+        </form>
+    </div>
+{% endblock %}

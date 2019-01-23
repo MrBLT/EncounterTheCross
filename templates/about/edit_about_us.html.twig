@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit About Us{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('static/lib/editor.md/css/editormd.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    {{ html|raw }}
+    <div class="row">
+        <div class="col">
+            <div id="editormd">
+                <textarea style="display:none;">No Markdown Loaded/Saved!</textarea>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('static/lib/editor.md/examples/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('static/lib/editor.md/editormd.min.js') }}"></script>
+    <script src="{{ asset('static/lib/editor.md/languages/en.js') }}"></script>
+    <script>
+        var markdown = '{{ markdown.markdown|escape('js') }}';
+        var markdownId = '{{ markdown.id|escape('js') }}';
+        var markdownName = '{{ markdown.name|escape('js') }}';
+        $(function () {
+            var myMarkdown = '';
+            var myHTML = '';
+            var savesuccess = function(data){
+                alert('Saved!');
+            };
+            var savefail = function(data){
+                console.log(data);
+            };
+            var save = function (md, html) {
+                console.log('TODO : Save the markdown and html',md, html);
+                $.ajax({
+                    type: "POST",
+                    url: '/markdown/save/'+markdownId,
+                    data: {
+                        'md':md,
+                        'html':html
+                    },
+                    success: savesuccess
+                });
+            };
+            var editor = editormd("editormd", {
+                mode: "markdown",
+                width: "90%",
+                height: 640,
+                syncScrolling: "single",
+                path: "../../../static/lib/editor.md/lib/",
+                codeFold : true,
+                emoji: true,
+                imageUpload : false,
+                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "./php/upload.php",
+                saveHTMLToTextarea : true,
+                onload : function() {
+                    // console.log('onload', this);
+                    this.setMarkdown(markdown);
+                    $(".editormd-menu").prepend(
+                        '<li><a href="javascript:;" title="Save Changes" unselectable="on"><i class="fa fa-save" id="savemd" name="save" unselectable="on"></i></a></li>' +
+                        '<li><a href="javascript:;" title="Discard Changes" unselectable="on"><i class="fa fa-trash" id="discardmd"  name="discard" unselectable="on"></i></a></li>' +
+                        '<li class="divider" unselectable="on">|</li>'
+                    );
+                    $( "#savemd" ).on( "click", function() {
+                        // console.log( 'TODO: Save The Markdown and cache the HTML!' );
+                        myMarkdown = editor.getMarkdown();
+                        myHTML = editor.getHTML();
+                        // console.log('html :',myHTML);
+                        // console.log('markdown : ',myMarkdown);
+                        save(myMarkdown,myHTML);
+                    });
+                    $( "#discardmd" ).on( "click", function() {
+                        console.log( 'TODO: Reset the markdown!' );
+                    });
+                }
+            });
+
+        });
+
+    </script>
+{% endblock %}

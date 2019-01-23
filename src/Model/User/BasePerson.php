@@ -10,6 +10,7 @@
 namespace App\Model\User;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class BasePerson
@@ -21,16 +22,30 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class BasePerson
 {
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
+     * @Assert\Email
+     * @Assert\NotBlank
      */
     protected $email;
 
     /**
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     protected $firstName;
 
     /**
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     protected $lastName;

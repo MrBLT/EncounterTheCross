@@ -32,7 +32,7 @@ class EventServerFixtures extends BaseFixture implements OrderedFixtureInterface
             for ($i = 0; $i < 20; $i++) {
                 $server = new EventServer();
                 $server
-                    ->setAddress($this->faker->address)
+                    ->setAddress($this->getFakeAddressLine())
                     ->setCity($this->faker->city)
                     ->setState('KS')
                     ->setZipcode($this->faker->postcode)
@@ -48,6 +48,8 @@ class EventServerFixtures extends BaseFixture implements OrderedFixtureInterface
                 $server->setLaunchPoint($this->launchPointRepository->findOneRandomly());
                 $server->setEvent($event);
                 $server->setContactPerson($this->faker->firstName);
+                $server->setContactPersonRelationship($this->faker->randomElement(['Spouse','Parent','Other Family','Friend']));
+                $server->setContactPersonPhone($this->faker->phoneNumber);
                 $manager->persist($server);
             }
         }

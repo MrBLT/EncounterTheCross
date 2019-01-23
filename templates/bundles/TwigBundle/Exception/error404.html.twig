@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{# in development, navigate to http://localhost/index.php/_error/{statusCode} to view the error page#}
+
+{% block body %}
+    <h1>Page not found</h1>
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

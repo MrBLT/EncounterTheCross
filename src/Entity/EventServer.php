@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Model\User\Person;
+use App\Model\User\PersonWithContact;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventServerRepository")
  */
-class EventServer extends Person
+class EventServer extends PersonWithContact
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -18,21 +18,6 @@ class EventServer extends Person
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contactPerson;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $church;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $invitedby;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -58,42 +43,6 @@ class EventServer extends Person
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getContactPerson(): ?string
-    {
-        return $this->contactPerson;
-    }
-
-    public function setContactPerson(string $contactPerson): self
-    {
-        $this->contactPerson = $contactPerson;
-
-        return $this;
-    }
-
-    public function getChurch(): ?string
-    {
-        return $this->church;
-    }
-
-    public function setChurch(string $church): self
-    {
-        $this->church = $church;
-
-        return $this;
-    }
-
-    public function getInvitedby(): ?string
-    {
-        return $this->invitedby;
-    }
-
-    public function setInvitedby(string $invitedby): self
-    {
-        $this->invitedby = $invitedby;
-
-        return $this;
     }
 
     public function getDutiesPerformed(): ?string

@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Model\User\Person;
+use App\Model\User\PersonWithContact;
+use App\Model\User\PersonWithPayment;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventAttendeeRepository")
  */
-class EventAttendee extends Person
+class EventAttendee extends PersonWithPayment
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -18,31 +19,6 @@ class EventAttendee extends Person
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contactPerson;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contactPersonRelationship;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contactPersonPhone;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $church;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $invitedby;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -65,66 +41,16 @@ class EventAttendee extends Person
      */
     private $launchPoint;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $checkedIn = false;
+
     public function getId()
     {
         return $this->id;
     }
 
-    public function getContactPersonRelationship()
-    {
-        return $this->contactPersonRelationship;
-    }
-
-    public function setContactPersonRelationship($contactPersonRelationship): void
-    {
-        $this->contactPersonRelationship = $contactPersonRelationship;
-    }
-
-    public function getContactPersonPhone()
-    {
-        return $this->contactPersonPhone;
-    }
-
-    public function setContactPersonPhone($contactPersonPhone): void
-    {
-        $this->contactPersonPhone = $contactPersonPhone;
-    }
-
-    public function getContactPerson(): ?string
-    {
-        return $this->contactPerson;
-    }
-
-    public function setContactPerson(string $contactPerson): self
-    {
-        $this->contactPerson = $contactPerson;
-
-        return $this;
-    }
-
-    public function getChurch(): ?string
-    {
-        return $this->church;
-    }
-
-    public function setChurch(string $church): self
-    {
-        $this->church = $church;
-
-        return $this;
-    }
-
-    public function getInvitedby(): ?string
-    {
-        return $this->invitedby;
-    }
-
-    public function setInvitedby(string $invitedby): self
-    {
-        $this->invitedby = $invitedby;
-
-        return $this;
-    }
 
     public function getQuestionsOrComments(): ?string
     {
@@ -170,6 +96,18 @@ class EventAttendee extends Person
     public function setLaunchPoint(?LaunchPoint $launchPoint): self
     {
         $this->launchPoint = $launchPoint;
+
+        return $this;
+    }
+
+    public function getCheckedIn(): ?bool
+    {
+        return $this->checkedIn;
+    }
+
+    public function setCheckedIn(bool $checkedIn): self
+    {
+        $this->checkedIn = $checkedIn;
 
         return $this;
     }

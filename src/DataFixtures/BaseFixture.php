@@ -27,6 +27,11 @@ abstract class BaseFixture extends Fixture
         $this->loadData($manager);
     }
 
+    protected function getFakeAddressLine()
+    {
+
+        return $this->faker->randomNumber(3).' '.$this->faker->streetName.' '.$this->faker->streetSuffix;
+    }
     /**
      * Create many objects at once:
      *

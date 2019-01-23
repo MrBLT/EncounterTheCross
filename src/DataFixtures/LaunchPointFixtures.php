@@ -14,7 +14,7 @@ class LaunchPointFixtures extends BaseFixture implements OrderedFixtureInterface
             $launchPoint = new LaunchPoint();
             $launchPoint
                 ->setName($this->faker->name)
-                ->setAddress($this->faker->address)
+                ->setAddress($this->getFakeAddressLine())
                 ->setCity($this->faker->city)
                 ->setState('KS')
                 ->setZipcode($this->faker->postcode)

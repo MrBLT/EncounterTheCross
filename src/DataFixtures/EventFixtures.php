@@ -28,6 +28,7 @@ class EventFixtures extends BaseFixture implements OrderedFixtureInterface
             $startdate = $this->faker->dateTimeThisYear();
             $location = $this->eventLocationRepository->findOneRandomly();
             $event
+                ->setName($this->faker->randomElement(['Mens Encounter','Womens Encounter']))
                 ->setStart($startdate)
                 ->setEnd($startdate->add(new \DateInterval('P10D')))
                 ->setLocation($location)

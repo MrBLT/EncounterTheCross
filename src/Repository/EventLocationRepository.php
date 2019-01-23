@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\EventLocation;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -12,7 +11,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method EventLocation[]    findAll()
  * @method EventLocation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EventLocationRepository extends ServiceEntityRepository
+class EventLocationRepository extends BaseRepository
 {
     public function __construct(RegistryInterface $registry)
     {

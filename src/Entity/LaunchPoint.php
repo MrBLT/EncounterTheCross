@@ -121,4 +121,11 @@ class LaunchPoint extends Location
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getCity().' '.$this->getState().' - '.$this->getName();
+    }
+
+
 }

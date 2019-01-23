@@ -14,8 +14,8 @@ class EventLocationFixtures extends BaseFixture implements OrderedFixtureInterfa
         $this->createMany(5, 'event_location', function($i) {
             $location = new EventLocation();
             $location
-                ->setName(sprintf('Location %d', $i))
-                ->setAddress($this->faker->address)
+                ->setName('Webster Conference Center'.$i)
+                ->setAddress($this->getFakeAddressLine())
                 ->setCity($this->faker->city)
                 ->setState('KS')
                 ->setZipcode($this->faker->postcode)

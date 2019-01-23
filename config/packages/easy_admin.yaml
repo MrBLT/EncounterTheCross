@@ -1,4 +1,37 @@
 easy_admin:
+    site_name: 'Encounter<br>The Cross'
     entities:
         # List the entity class name you want to manage
-        - App\Entity\AdminUser
+        Administrators:
+            class: App\Entity\AdminUser
+            list:
+                fields: ['email','firstName','lastName','roles']
+        Events:
+            class: App\Entity\Event
+            list:
+                fields: ['name','start','end','location','attendees','servers']
+        Event_Locations:
+            label: 'Event Locations'
+            class: App\Entity\EventLocation
+            list:
+                fields: ['name','address','address2','city','state','zipcode']
+        Launch_Points:
+            label: 'Launch Points'
+            class: App\Entity\LaunchPoint
+            list:
+                fields: ['name','address','address2','city','state','zipcode']
+        Event_Attendees:
+            label: 'Event Attendees'
+            class: App\Entity\EventAttendee
+            list:
+                fields: ['firstName','lastName','email','address','address2','city','state','zipcode']
+        Event_Servers:
+            label: 'Event Servers'
+            class: App\Entity\EventServer
+            list:
+                fields: ['firstName','lastName','email','address','address2','city','state','zipcode']
+        Testimonials:
+            class: App\Entity\Testimonial
+
+            list:
+                fields: ['testimony','fullName','allowedToPublish','isPublished','recordDate']

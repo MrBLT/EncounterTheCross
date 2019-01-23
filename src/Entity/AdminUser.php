@@ -33,7 +33,7 @@ class AdminUser extends BasePerson implements UserInterface
      */
     private $password;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
